@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 40px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        .icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+
+        .gauge {
+            width: 600px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['gauge']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['Distancia', 5]
+            ]);
+            var options = {
+                width: 600,
+                height: 200,
+                redFrom: 150,
+                redTo: 200,
+                yellowFrom: 100,
+                yellowTo: 150,
+                min: 0,
+                max: 200,
+                minorTicks: 5
+            };
+            var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="card">
+        <i class="icon">📏</i>
+        <h1>Mediciones del Sensor</h1>
+        <p><strong>Duración:</strong> <?php echo $duration; ?> microsegundos</p>
+        <p><strong>Distancia:</strong>
+     5 centímetros
+     </p>
+    </div>
+
+    <div class="chart-container">
+        <div id="chart_div" class="gauge"></div>
+    </div>
+</body>
+
+</html>
